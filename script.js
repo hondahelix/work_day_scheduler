@@ -53,6 +53,8 @@ function checkPastPresentFurture(){
             $("#t-"+arrayOfTime[i].hour).addClass("past");
             //console.log($("#t-"+arrayOfTime[i].hour));
         }
+        $("#b-"+arrayOfTime[i].hour).prepend('<img id="theImg" src="assets/Save-512.png" />')
+
         reLoad(arrayOfTime[i].hour);
     }
 }

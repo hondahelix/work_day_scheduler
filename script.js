@@ -34,32 +34,6 @@ var arrayOfTime = [
     time: "5 pm"}
 ];
 
-// OLD CODE that I could not figure out -> maybe do able but ran out of time
-//so I hard coded rows in HTML
-//makes the colors and rows but I dont know how to get values out of them
-// function makeTimeRows(){
-//     for(var i = 0; i<arrayOfTime.length; i++){
-//         var newRow = $("<div>").addClass("row time-block");
-//         var newP = $("<p>").addClass("hour col-2");
-//         newP.text(arrayOfTime[i].time);
-//         var newTextarea = $("<textarea>").addClass("col-9");
-//         var button = $("<button>").addClass("saveBtn col-1");
-//         if(currentHour==arrayOfTime[i].hour){
-//             newTextarea.addClass("present")
-//         }
-//         else if(currentHour<arrayOfTime[i].hour){
-//             newTextarea.addClass("future");
-//         }
-//         else{
-//             newTextarea.addClass("past");
-//         }
-//         newRow.append(newP, newTextarea, button);
-//         //console.log(newRow);
-//         $(".container").append(newRow);
-//     }
-// }
-// makeTimeRows();
-
 function reLoad(i){
     console.log(i);
     if(localStorage.getItem("t-"+i)!==null){

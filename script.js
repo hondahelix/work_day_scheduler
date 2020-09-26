@@ -4,9 +4,9 @@ console.log(moment().format());
 $("#currentDay").text(moment().format("dddd, MMMM Do YYYY, h:mm:ss a"));
 
 //global vars 
-//var currentHour = moment().format('HH');
-console.log(currentHour);
-var currentHour = "12";
+var currentHour = moment().format('HH');
+//console.log(currentHour);
+//var currentHour = "12";
 var arrayOfTime = [
     {hour: "09",
     time:"9 am"},
@@ -62,7 +62,11 @@ var arrayOfTime = [
 // }
 // makeTimeRows();
 function reLoad(i){
-    
+    console.log(i);
+    if(localStorage.getItem("t-"+i)!==null){
+        $("#t-"+i).val(localStorage.getItem("t-"+i));
+    }
+    //console.log(store);
 }
 
 function checkPastPresentFurture(){
@@ -75,8 +79,9 @@ function checkPastPresentFurture(){
         }
         else{
             $("#t-"+arrayOfTime[i].hour).addClass("past");
-            console.log($("#t-"+arrayOfTime[i].hour));
+            //console.log($("#t-"+arrayOfTime[i].hour));
         }
+        reLoad(arrayOfTime[i].hour);
     }
 }
 
@@ -88,6 +93,9 @@ $(".saveBtn").on("click", function() {
     if(comment != ""){
         //console.log(comment);
         localStorage.setItem(tId, comment);
+    }
+    else{
+        localStorage.removeItem(tId);
     }
     
 });

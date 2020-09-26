@@ -4,9 +4,9 @@ console.log(moment().format());
 $("#currentDay").text(moment().format("dddd, MMMM Do YYYY, h:mm:ss a"));
 
 //global vars 
-var currentHour = moment().format('HH');
+//var currentHour = moment().format('HH');
 console.log(currentHour);
-//var currentHour = "12";
+var currentHour = "12";
 var arrayOfTime = [
     {hour: "09",
     time:"9 am"},
@@ -44,13 +44,15 @@ function makeTimeRows(){
         newP.text(arrayOfTime[i].time);
         var newTextarea = $("<textarea>").addClass("col-9");
         var button = $("<button>").addClass("saveBtn col-1");
-        
-        if(currentHour==arrayOfTime[i].time){
+        if(currentHour==arrayOfTime[i].hour){
             newTextarea.addClass("present")
         }
-        // else if(){
-
-        // }
+        else if(currentHour<arrayOfTime[i].hour){
+            newTextarea.addClass("future");
+        }
+        else{
+            newTextarea.addClass("past");
+        }
         newRow.append(newP, newTextarea, button);
         $(".container").append(newRow);
     }

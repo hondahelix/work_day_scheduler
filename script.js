@@ -4,9 +4,9 @@ console.log(moment().format());
 $("#currentDay").text(moment().format("dddd, MMMM Do YYYY, h:mm:ss a"));
 
 //global vars 
-//var currentHour = moment().format('HH');
+var currentHour = moment().format('HH');
 console.log(currentHour);
-var currentHour = "12";
+//var currentHour = "12";
 var arrayOfTime = [
     {hour: "09",
     time:"9 am"},
@@ -35,29 +35,40 @@ var arrayOfTime = [
     {hour:"17",
     time: "5 pm"}
 ];
-//console.log(currentHour);
 //need to have 9am-5pm time blocks 
-function makeTimeRows(){
-    for(var i = 0; i<arrayOfTime.length; i++){
-        var newRow = $("<div>").addClass("row time-block");
-        var newP = $("<p>").addClass("hour col-2");
-        newP.text(arrayOfTime[i].time);
-        var newTextarea = $("<textarea>").addClass("col-9");
-        var button = $("<button>").addClass("saveBtn col-1");
-        if(currentHour==arrayOfTime[i].hour){
-            newTextarea.addClass("present")
-        }
-        else if(currentHour<arrayOfTime[i].hour){
-            newTextarea.addClass("future");
-        }
-        else{
-            newTextarea.addClass("past");
-        }
-        newRow.append(newP, newTextarea, button);
-        $(".container").append(newRow);
-    }
-}
-makeTimeRows();
+
+//makes the colors and rows but I dont know how to get values out of them
+// function makeTimeRows(){
+//     for(var i = 0; i<arrayOfTime.length; i++){
+//         var newRow = $("<div>").addClass("row time-block");
+//         var newP = $("<p>").addClass("hour col-2");
+//         newP.text(arrayOfTime[i].time);
+//         var newTextarea = $("<textarea>").addClass("col-9");
+//         var button = $("<button>").addClass("saveBtn col-1");
+//         if(currentHour==arrayOfTime[i].hour){
+//             newTextarea.addClass("present")
+//         }
+//         else if(currentHour<arrayOfTime[i].hour){
+//             newTextarea.addClass("future");
+//         }
+//         else{
+//             newTextarea.addClass("past");
+//         }
+//         newRow.append(newP, newTextarea, button);
+//         //console.log(newRow);
+//         $(".container").append(newRow);
+//     }
+
+// }
+// makeTimeRows();
+
+// function fillRows(){
+//     for(var i = 0; i<arrayOfTime.length; i++){
+
+//     }
+// }
+console.log($("13"));
+
 // function checkPastPresentFurture(){
 
 // }
@@ -69,3 +80,7 @@ let updateTime = function () {
 //calls update time every sec/1000 ms
 setInterval(updateTime, 1000);
 //console.log(currentHour);
+
+// $(".saveBtn").on("click", function() {
+//     console.log($("textarea").val());
+// });

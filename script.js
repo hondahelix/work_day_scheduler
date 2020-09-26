@@ -5,8 +5,6 @@ $("#currentDay").text(moment().format("dddd, MMMM Do YYYY, h:mm:ss a"));
 
 //global vars 
 var currentHour = moment().format('HH');
-//console.log(currentHour);
-//var currentHour = "12";
 var arrayOfTime = [
     {hour: "09",
     time:"9 am"},
@@ -35,8 +33,9 @@ var arrayOfTime = [
     {hour:"17",
     time: "5 pm"}
 ];
-//need to have 9am-5pm time blocks 
 
+// OLD CODE that I could not figure out -> maybe do able but ran out of time
+//so I hard coded rows in HTML
 //makes the colors and rows but I dont know how to get values out of them
 // function makeTimeRows(){
 //     for(var i = 0; i<arrayOfTime.length; i++){
@@ -58,15 +57,14 @@ var arrayOfTime = [
 //         //console.log(newRow);
 //         $(".container").append(newRow);
 //     }
-
 // }
 // makeTimeRows();
+
 function reLoad(i){
     console.log(i);
     if(localStorage.getItem("t-"+i)!==null){
         $("#t-"+i).val(localStorage.getItem("t-"+i));
     }
-    //console.log(store);
 }
 
 function checkPastPresentFurture(){
@@ -85,19 +83,17 @@ function checkPastPresentFurture(){
     }
 }
 
+//on click of button saves to local storage
 $(".saveBtn").on("click", function() {
-    //console.log(this);
     var id = this.id;
     tId = id.replace('b', 't')
     var comment = $.trim($("#"+tId).val());
     if(comment != ""){
-        //console.log(comment);
         localStorage.setItem(tId, comment);
     }
     else{
         localStorage.removeItem(tId);
-    }
-    
+    }  
 });
 
 let updateTime = function () {
@@ -107,4 +103,5 @@ let updateTime = function () {
 
 //calls update time every sec/1000 ms
 setInterval(updateTime, 1000);
+//updates colors if passes the time
 checkPastPresentFurture();

@@ -4,9 +4,9 @@ console.log(moment().format());
 $("#currentDay").text(moment().format("dddd, MMMM Do YYYY, h:mm:ss a"));
 
 //global vars 
-var currentHour = moment().format('HH');
+//var currentHour = moment().format('HH');
 console.log(currentHour);
-//var currentHour = "12";
+var currentHour = "12";
 var arrayOfTime = [
     {hour: "09",
     time:"9 am"},
@@ -61,26 +61,42 @@ var arrayOfTime = [
 
 // }
 // makeTimeRows();
+function reLoad(i){
+    
+}
 
-// function fillRows(){
-//     for(var i = 0; i<arrayOfTime.length; i++){
+function checkPastPresentFurture(){
+    for(var i = 0; i<arrayOfTime.length; i++){
+        if(currentHour==arrayOfTime[i].hour){
+            $("#t-"+arrayOfTime[i].hour).addClass("present")
+        }
+        else if(currentHour<arrayOfTime[i].hour){
+            $("#t-"+arrayOfTime[i].hour).addClass("future");
+        }
+        else{
+            $("#t-"+arrayOfTime[i].hour).addClass("past");
+            console.log($("#t-"+arrayOfTime[i].hour));
+        }
+    }
+}
 
-//     }
-// }
-console.log($("13"));
+$(".saveBtn").on("click", function() {
+    //console.log(this);
+    var id = this.id;
+    tId = id.replace('b', 't')
+    var comment = $.trim($("#"+tId).val());
+    if(comment != ""){
+        //console.log(comment);
+        localStorage.setItem(tId, comment);
+    }
+    
+});
 
-// function checkPastPresentFurture(){
-
-// }
 let updateTime = function () {
     //updates time on page every sec
     $("#currentDay").text(moment().format("dddd, MMMM Do YYYY, h:mm:ss a"));
 }
-//updateTime();
+
 //calls update time every sec/1000 ms
 setInterval(updateTime, 1000);
-//console.log(currentHour);
-
-// $(".saveBtn").on("click", function() {
-//     console.log($("textarea").val());
-// });
+checkPastPresentFurture();
